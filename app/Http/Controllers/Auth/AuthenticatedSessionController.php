@@ -18,7 +18,7 @@ class AuthenticatedSessionController extends Controller
     {
         return view('auth.login');
     }
-
+    
     /**
      * Handle an incoming authentication request.
      */
@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('notes.index'));
     }
 
     /**
