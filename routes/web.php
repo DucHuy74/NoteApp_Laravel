@@ -17,8 +17,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/notes/index', [NotesController::class, 'index'])->name('notes.index');
-Route::get('/notes/note/{id}', [NotesController::class, 'note'])->name('notes.note');
+Route::middleware('auth')->group(function () {
+    Route::get('/notes/index', [NotesController::class, 'index'])->name('notes.index');
+    Route::get('/notes/note/{id}', [NotesController::class, 'note'])->name('notes.note');
+});
+
 
 
 require __DIR__.'/auth.php';

@@ -13,11 +13,10 @@ class NotesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 0; $i < 20; $i++){
+        for($i = 0; $i < 1; $i++){
             DB::table('notes')->insert([
                 'title' => Str::random(),
                 'text' => Str::random(100),
-                'color' => 'light',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
