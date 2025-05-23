@@ -13,12 +13,15 @@ class NotesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 0; $i < 1; $i++){
+         $user = DB::table('users')->latest('id')->first();
+
+        if ($user) {
             DB::table('notes')->insert([
-                'title' => Str::random(),
+                'user_id' => $user->id,
+                'title' => Str::random(10),
                 'text' => Str::random(100),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
     }

@@ -20,6 +20,14 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/notes/index', [NotesController::class, 'index'])->name('notes.index');
     Route::get('/notes/note/{id}', [NotesController::class, 'note'])->name('notes.note');
+    Route::delete('/notes/delete/{id}', [NotesController::class, 'delete'])->name('notes.delete');
+    // GET form update
+    Route::get('/notes/update/{id}', [NotesController::class, 'edit'])->name('notes.edit');
+    // update xử lý form
+    Route::put('/notes/update/{id}', [NotesController::class, 'update'])->name('notes.update');
+
+    Route::get('/notes/create', [NotesController::class, 'create'])->name('notes.create');
+    Route::post('/notes/store', [NotesController::class, 'store'])->name('notes.store');
 });
 
 
