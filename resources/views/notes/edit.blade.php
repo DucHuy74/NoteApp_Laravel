@@ -18,6 +18,15 @@
                         <textarea class="form-control" name="text" id="text" rows="5" required>{{ old('text', $note->text) }}</textarea>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="tags" class="form-label">Tags (comma-separated)</label>
+                        <input type="text" class="form-control @error('tags') is-invalid @enderror" name="tags"
+                            id="tags" value="{{ old('tags', $note->tags->pluck('tagName')->implode(', ')) }}">
+                        @error('tags')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <button type="submit" class="btn btn-success">Update</button>
                     <a href="{{ route('notes.index') }}" class="btn btn-danger">Cancel</a>
                 </form>

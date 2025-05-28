@@ -26,10 +26,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="tags" class="form-label">Tags</label>
+                        <label for="tags" class="form-label">Tags (comma-separated)</label>
                         <input type="text" class="form-control @error('tags') is-invalid @enderror" id="tags"
                             name="tags" value="{{ old('tags') }}">
-                        <div class="form-text"></div>
                         @error('tags')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
