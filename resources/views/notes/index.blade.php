@@ -1,82 +1,98 @@
 <x-app-layout>
-    <div class="container py-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
 
-                {{-- Header --}}
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h1 class="fw-bold">📋 Note Lists</h1>
-                    <a href="{{ route('notes.create') }}" class="btn btn-primary shadow-sm">+ Create</a>
-                </div>
+        {{-- Header --}}
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">📋 Note Lists</h1>
+            <a href="{{ route('notes.create') }}"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow">
+                + Create
+            </a>
+        </div>
 
-                {{-- Search Form --}}
-                <form action="{{ route('notes.index') }}" method="GET" class="mb-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control shadow-sm" placeholder="🔍 Search notes by title..."
-                            name="search" value="{{ request('search') }}">
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
-                        @if (request('search'))
-                            <a href="{{ route('notes.index') }}" class="btn btn-outline-danger">Clear</a>
-                        @endif
-                    </div>
-                </form>
+        {{-- Search Form --}}
+        <form action="{{ route('notes.index') }}" method="GET" class="mb-6">
+            <div class="flex flex-col sm:flex-row gap-2">
+                <input type="text" name="search"
+                    class="w-full sm:flex-1 border border-gray-300 rounded px-4 py-2 shadow-sm focus:outline-none focus:ring focus:border-blue-400"
+                    placeholder="🔍 Search notes by title or tag..." value="{{ request('search') }}">
 
-                {{-- Table --}}
-                <div class="table-responsive">
-                    <table class="table table-bordered align-middle table-hover">
-                        <thead class="table-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Title</th>
-                                <th>Tags</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($notes as $note)
-                                <tr>
-                                    <th>{{ $note->id }}</th>
-                                    <td class="fw-semibold">{{ $note->title }}</td>
-                                    <td>
-                                        @foreach ($note->tags as $tag)
-                                            <span class="badge bg-secondary">{{ $tag->tagName }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td>{{ $note->created_at }}</td>
-                                    <td>{{ $note->updated_at }}</td>
-                                    <td class="d-flex gap-1 flex-wrap">
-                                        <a class="btn btn-sm btn-info text-white"
-                                            href="{{ route('notes.note', ['id' => $note->id]) }}">
-                                            See
-                                        </a>
-                                        <a class="btn btn-sm btn-warning"
-                                            href="{{ route('notes.edit', ['id' => $note->id]) }}">
-                                            Update
-                                        </a>
-                                        <form action="{{ route('notes.delete', ['id' => $note->id]) }}" method="POST"
-                                            class="d-inline" onsubmit="return confirm('Are you sure?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center text-muted py-4">No notes found.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                <div class="flex gap-2">
+                    <button type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                        Search
+                    </button>
 
-                {{-- Pagination --}}
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $notes->links() }}
+                    @if (request('search'))
+                        <a href="{{ route('notes.index') }}"
+                            class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+                            Clear
+                        </a>
+                    @endif
                 </div>
             </div>
+        </form>
+
+        {{-- Table --}}
+        <div class="overflow-x-auto bg-white rounded shadow">
+            <table class="min-w-full table-auto text-sm">
+                <thead class="bg-gray-100 text-gray-700 text-left">
+                    <tr>
+                        <th class="p-3">#</th>
+                        <th class="p-3">Title</th>
+                        <th class="p-3">Tags</th>
+                        <th class="p-3">Created At</th>
+                        <th class="p-3">Updated At</th>
+                        <th class="p-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($notes as $note)
+                        <tr class="border-t">
+                            <td class="p-3">{{ $note->id }}</td>
+                            <td class="p-3 font-semibold">{{ $note->title }}</td>
+                            <td class="p-3 space-x-1">
+                                @foreach ($note->tags as $tag)
+                                    <span class="inline-block bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">
+                                        {{ $tag->tagName }}
+                                    </span>
+                                @endforeach
+                            </td>
+                            <td class="p-3">{{ $note->created_at }}</td>
+                            <td class="p-3">{{ $note->updated_at }}</td>
+                            <td class="p-3 flex flex-wrap gap-2">
+                                <a href="{{ route('notes.note', ['id' => $note->id]) }}"
+                                    class="bg-blue-500 text-white px-3 py-1 rounded text-xs hover:bg-blue-600 transition">
+                                    See
+                                </a>
+                                <a href="{{ route('notes.edit', ['id' => $note->id]) }}"
+                                    class="bg-yellow-500 text-white px-3 py-1 rounded text-xs hover:bg-yellow-600 transition">
+                                    Update
+                                </a>
+                                <form action="{{ route('notes.delete', ['id' => $note->id]) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="bg-red-500 text-white px-3 py-1 rounded text-xs hover:bg-red-600 transition">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-gray-500 py-6">No notes found.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
+
+        {{-- Pagination --}}
+        <div class="mt-6 flex justify-center">
+            {{ $notes->links() }}
+        </div>
+
     </div>
 </x-app-layout>

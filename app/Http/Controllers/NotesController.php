@@ -16,7 +16,7 @@ class NotesController extends Controller
 
     if ($request->filled('search')) {
         $searchTerm = $request->search;
-
+        //function($q) gộp nhiều điều kiện trong cùng một khối logic.
         $query->where(function($q) use ($searchTerm) {
             $q->where('title', 'like', '%' . $searchTerm . '%')
               ->orWhereHas('tags', function($q2) use ($searchTerm) {
