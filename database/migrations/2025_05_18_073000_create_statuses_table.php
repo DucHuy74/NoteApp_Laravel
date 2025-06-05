@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_tasks', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('note_id')
-                ->constrained()
-                ->onDelete('cascade'); // Khi xóa note thì xóa luôn subtask
-            $table->string('title');
-            $table->text('description')->nullable();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sub_tasks');
+        Schema::dropIfExists('statuses');
     }
 };

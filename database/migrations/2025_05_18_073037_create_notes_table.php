@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-
-            // Tạo cột user_id và thiết lập khóa ngoại liên kết với bảng users
             $table->foreignId('user_id')
-                  ->constrained()   // tự động tham chiếu đến bảng users, cột id
-                  ->onDelete('cascade');  // khi user bị xóa thì các note liên quan cũng bị xóa
-
+                  ->constrained()
+                  ->onDelete('cascade');
+            $table->foreignId('status_id')
+                  ->constrained()
+                  ->onDelete('cascade');
             $table->string('title');
             $table->longText('text');
             $table->timestamps();

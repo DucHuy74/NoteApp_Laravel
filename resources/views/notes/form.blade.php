@@ -29,7 +29,7 @@
 
             {{-- Tags --}}
             <div>
-                <label for="tags" class="block text-sm font-medium text-gray-700">Tags (comma-separated)</label>
+                <label for="tags" class="block text-sm font-medium text-gray-700">Tags</label>
                 <input type="text" id="tags" name="tags"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 @error('tags') border-red-500 @enderror"
                     value="{{ old('tags') }}">
@@ -38,6 +38,21 @@
                 @enderror
             </div>
 
+            {{-- Status --}}
+            <div>
+                <label for="status_id" class="block text-sm font-medium text-gray-700">Status</label>
+                <select id="status_id" name="status_id"
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 @error('status_id') border-red-500 @enderror">
+                    @foreach ($statuses as $status)
+                        <option value="{{ $status->id }}" {{ old('status_id') == $status->id ? 'selected' : '' }}>
+                            {{ $status->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('status_id')
+                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                @enderror
+            </div>
             {{-- Buttons --}}
             <div class="flex gap-4">
                 <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">

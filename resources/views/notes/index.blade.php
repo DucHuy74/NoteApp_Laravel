@@ -41,6 +41,7 @@
                         <th class="p-3">#</th>
                         <th class="p-3">Title</th>
                         <th class="p-3">Tags</th>
+                        <th class="p-3">Status</th>
                         <th class="p-3">Created At</th>
                         <th class="p-3">Updated At</th>
                         <th class="p-3">Actions</th>
@@ -57,6 +58,9 @@
                                         {{ $tag->tagName }}
                                     </span>
                                 @endforeach
+                            </td>
+                            <td class="p-3">
+                                {{ $note->status?->name ?? 'No Status' }}
                             </td>
                             <td class="p-3">{{ $note->created_at }}</td>
                             <td class="p-3">{{ $note->updated_at }}</td>
