@@ -1,9 +1,9 @@
 # Project: NoteApp
 Giới thiệu:
 
-Họ và tên Sinh viên: Hoàng Lê Đức Huy
-Mã Sinh viên: 23010298
-Lớp: CSE702051-1-3-24(COUR01.TH3)
+**Họ và tên Sinh viên:** Hoàng Lê Đức Huy
+**Mã Sinh viên:** 23010298
+**Lớp:** CSE702051-1-3-24(COUR01.TH3)
 
 ## 📝 Mô tả dự án
 
@@ -276,7 +276,6 @@ blade template
 
 <strong>
     Authorization
-    Ví dụ: Sử dụng Gate để authorization người dùng chỉ được update đúng note của họ
 method: NotesController@update
 </strong>
 
