@@ -303,10 +303,41 @@ method: NotesController@update
 
 # Một số hình ảnh chức năng chính
 
+## Xác thực người dùng <\<Breeze>\>
 
+<strong>Trang đăng nhập</strong>
 
+![Register](./img/sign-in.jpg)
 
+<strong>Trang đăng ký</strong>
 
+![Register](./img/register.jpg)
+
+## Trang chính
+
+![trang chủ](./img/trangchu.jpg)
+
+## CRUD Note
+
+<strong>Create Note</strong>
+
+![create-note](./img/create.jpg)
+
+<strong>Read</strong>
+
+![update](./img/read.jpg)
+
+<strong>Update</strong>
+
+![update](./img/update.jpg)
+
+<strong>Delete</strong>
+
+![update](./img/delete.jpg)
+
+<strong>Search</strong>
+
+![update](./img/search.jpg)
 
 # License & Copy Rights
 
