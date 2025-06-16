@@ -22,19 +22,13 @@ Website quản lý ghi chú, cho phép người dùng tạo ghi chú, phân lo�
 
 ## Sơ đồ chức năng
 
-Class Diagram of Objects
+![UML](./img/UML.jpg)
 
 ## Sơ đồ thuật toán
 
-Create 
-Activity Diagram
+<strong>CRUD Note</strong>  
 
-Edit Cart
-Activity Diagram
-
-Delete Cart
-
-Activity Diagram
+![Note-diagram](./img/Sequence.jpg)
 
 Authentication/Authorisation
 
@@ -237,7 +231,6 @@ class NotesController extends Controller
 ```
 
 ## View
-blade template
 
 # Security Setup
 
