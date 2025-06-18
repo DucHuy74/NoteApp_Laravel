@@ -54,7 +54,7 @@
                             <td class="p-3 font-semibold">{{ $note->title }}</td>
                             <td class="p-3 space-x-1">
                                 @foreach ($note->tags as $tag)
-                                    <span class="inline-block bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs">
+                                    <span class="inline-block bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs mb-1">
                                         {{ $tag->tagName }}
                                     </span>
                                 @endforeach
