@@ -300,7 +300,6 @@ method: NotesController@update
 ## Github page
 
 `https://duchuy74.github.io/NoteApp_Laravel/`
-## Link Demo : Youtube link: 
 
 ## Public Web (deployment) link: 
 `https://noteapp-laravel-main-3mubbt.laravel.cloud/`
