@@ -30,8 +30,6 @@ Website quản lý ghi chú, cho phép người dùng tạo ghi chú, phân lo�
 
 ![Note-diagram](./img/Sequence.jpg)
 
-Authentication/Authorisation
-
 
 # Một số Code chính minh họa
 
@@ -231,6 +229,18 @@ class NotesController extends Controller
 ```
 
 ## View
+
+<strong>
+    Cấu trúc chính của view
+</strong>
+
+![Structure-view](./img/view.jpg)
+
+<strong>
+    Sử dụng thư viện Tailwind CSS
+</strong>
+
+![tailwind1](./img/taiwind.jpg)
 
 # Security Setup
 
