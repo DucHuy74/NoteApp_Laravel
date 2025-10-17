@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     // update xử lý form
     Route::put('/notes/update/{id}', [NotesController::class, 'update'])->name('notes.update');
 
+    // create note
     Route::get('/notes/create', [NotesController::class, 'create'])->name('notes.create');
     Route::post('/notes/store', [NotesController::class, 'store'])->name('notes.store');
 });
