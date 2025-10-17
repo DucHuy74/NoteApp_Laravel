@@ -1,0 +1,40 @@
+# Tên của workflow
+name: Deploy Laravel to EC2
+
+# Kích hoạt workflow mỗi khi có code được đẩy lên nhánh main
+on:
+  push:
+    branches:
+      - main
+
+# Định nghĩa các công việc cần thực hiện
+jobs:
+  deploy:
+    # Sử dụng một máy ảo Ubuntu mới nhất để chạy
+    runs-on: ubuntu-latest
+
+    # Các bước thực hiện
+    steps:
+      # Bước 1: Lấy code mới nhất từ repository về
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Bước 2: Cài đặt PHP với các extension cần thiết
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      # Bước 3: Cài đặt Composer dependencies
+      - name: Install Composer Dependencies
+        run: composer install --prefer-dist --no-progress
+
+      # Bước 4: Thực thi script deploy trên EC2
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_SSH_HOST }}
+          username: ${{ secrets.AWS_SSH_USER }}
+          key: ${{ secrets.AWS_SSH_KEY }}
+          script: |
+            sudo /usr/local/bin/deploy.sh
